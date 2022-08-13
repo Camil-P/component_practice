@@ -1,0 +1,12 @@
+.row{
+    display: flex;
+}
+
+.square{
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    font-size: 150px;
+}

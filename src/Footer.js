@@ -1,22 +1,16 @@
+import { useState } from "react";
+
 const Footer = () => {
-  const nekaVariabla = "Neka galama";
-  const nekiString = `${nekaVariabla} uz neki text`;
-  const nekiNiz = [null, null, null];
-  const modifikovaniNiz = nekiNiz.map((element) => {
-    return "neki stringovi";
-  });
+  const [vrednostIzInputa, setVrednostIzInputa] = useState();
+
+  const renderInput = (event) => {
+    setVrednostIzInputa(event.target.value);
+  };
 
   return (
     <div>
-      {nekiString}
-      {modifikovaniNiz.map((elementNiza, i, niz) => {
-        return (
-          <div key={elementNiza + i.toString()}>
-            {elementNiza}
-            <h1>Neki text</h1>
-          </div>
-        );
-      })}
+      <h1>{vrednostIzInputa}</h1>
+      <input onChange={renderInput} />
     </div>
   );
 };
