@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Board from "./Board";
-import Counter from "./Counter";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// const response = await axios.get("https://fakestoreapi.com/products");
+
 root.render(
   <React.StrictMode>
-    <Board />
-    <Counter />
+    <App />
   </React.StrictMode>
 );
