@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 const App = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     axios
@@ -19,13 +18,15 @@ const App = () => {
   }, []);
 
   const handleInput = (inputedValue) => {
-    setSearchInput(inputedValue);
-
-    setFilteredProducts(
-      products.filter((el) =>
-        el.title.toLowerCase().includes(searchInput.toLowerCase())
-      )
-    );
+    if (inputedValue === "") {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((el) =>
+          el.title.toLowerCase().includes(inputedValue.toLowerCase())
+        )
+      );
+    }
   };
 
   return (
