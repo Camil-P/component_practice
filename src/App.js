@@ -6,13 +6,20 @@ import { useState, useEffect } from "react";
 const App = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
-      .then((res) => {
-        setProducts(res.data);
-        setFilteredProducts(res.data);
+      .then(({ data }) => {
+        setCategories([...new Set(data.map((d) => d.category))]);
+        // const allCategories = data.map((d) => d.category);
+        // const uniqueCategories = new Set(allCategories);
+        // const uniqueCategoryArr = [...uniqueCategories]
+        // setCategories([...uniqueCategories]);
+
+        setProducts(data);
+        setFilteredProducts(data);
       })
       .catch((message) => console.log(message));
   }, []);
@@ -31,7 +38,7 @@ const App = () => {
 
   return (
     <div>
-      <SearchInput handleOnChange={handleInput} />
+      <SearchInput categoryOptions={categories} handleOnChange={handleInput} />
       <DisplayProducts products={filteredProducts} />
     </div>
   );
